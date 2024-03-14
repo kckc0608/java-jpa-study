@@ -26,8 +26,12 @@ public class JpaMain {
 //            System.out.println(member.getName());
 
             // delete
-            Member member = em.find(Member.class, 1L);
-            em.remove(member);
+//            Member member = em.find(Member.class, 1L);
+//            em.remove(member);
+
+            // update
+            Member member = em.find(Member.class, 2L);
+            member.setName("helloJPA");
 
             transaction.commit();
         } catch (Exception ex) {
