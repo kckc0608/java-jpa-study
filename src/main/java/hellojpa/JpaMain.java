@@ -14,11 +14,17 @@ public class JpaMain {
         transaction.begin();
 
         try {
-            Member member = new Member();
-            member.setId(1L);
-            member.setName("hello1");
+            // create
+//            Member member = new Member();
+//            member.setId(1L);
+//            member.setName("hello1");
+//
+//            em.persist(member);
 
-            em.persist(member);
+            // read
+            Member member = em.find(Member.class, 1L);
+            System.out.println(member.getName());
+
             transaction.commit();
         } catch (Exception ex) {
             transaction.rollback();
