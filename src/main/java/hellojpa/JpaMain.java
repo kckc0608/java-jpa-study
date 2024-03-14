@@ -2,6 +2,8 @@ package hellojpa;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 public class JpaMain {
 
     public static void main(String[] args) {
@@ -14,24 +16,12 @@ public class JpaMain {
         transaction.begin();
 
         try {
-            // create
-//            Member member = new Member();
-//            member.setId(1L);
-//            member.setName("hello1");
-//
-//            em.persist(member);
+            List<Member> members = em.createQuery("select m from Member as m", Member.class)
+                    .getResultList();
 
-            // read
-//            Member member = em.find(Member.class, 1L);
-//            System.out.println(member.getName());
-
-            // delete
-//            Member member = em.find(Member.class, 1L);
-//            em.remove(member);
-
-            // update
-            Member member = em.find(Member.class, 2L);
-            member.setName("helloJPA");
+            for (Member member : members) {
+                System.out.println(member.getName());
+            }
 
             transaction.commit();
         } catch (Exception ex) {
